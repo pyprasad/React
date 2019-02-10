@@ -1,0 +1,42 @@
+//React, ReactDOM
+//mountNode.innerHTML = "hello"
+
+class Button extends React.Component {    
+	render() {
+  	return(
+      <button onClick={()=>this.props.onClickFunction(this.props.amountIncreamentValue)}>
+      		{this.props.amountIncreamentValue}
+      </button>
+  	);
+  }
+}
+
+const Result = (props) =>{
+	return(
+  	<div>{props.counter}</div>
+  );
+};
+
+class App extends React.Component {
+	state = {counter:0}
+  
+  increamentCounter = (amountIncreamentValue) =>{
+    	this.setState((prevState) => ({
+      	counter: prevState.counter + amountIncreamentValue
+      }));
+  };
+	render() {
+  	return(
+    	<div>
+      	<Button amountIncreamentValue={1} onClickFunction={this.increamentCounter}/>
+        <Button amountIncreamentValue={5} onClickFunction={this.increamentCounter}/>
+        <Button amountIncreamentValue={10} onClickFunction={this.increamentCounter}/>
+        <Button amountIncreamentValue={100} onClickFunction={this.increamentCounter}/>
+        
+        <Result counter={this.state.counter}/>
+      </div>  
+    );
+  }
+}
+
+ReactDOM.render(<App/>, mountNode);
